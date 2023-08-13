@@ -19,7 +19,6 @@ app.get("/", (req, res) => {
   res.send("Rollin Rust is running");
 });
 
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.tyocyp7.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -29,6 +28,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    // Connect the client to the server	(optional starting in v4.7)
     // Creating Database Collections
     const servicesCollection = client.db("rollin_rust").collection("services");
     const bookingsCollection = client.db("rollin_rust").collection("bookings");
@@ -75,6 +75,7 @@ async function run() {
       res.send(result);
     });
   } finally {
+    // Ensures that the client will close when you finish/error
   }
 }
 
